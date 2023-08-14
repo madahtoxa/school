@@ -1,5 +1,7 @@
 package ru.hogwarts.school.model;
 
+import nonapi.io.github.classgraph.json.Id;
+
 import java.util.Objects;
 
 public class Student {

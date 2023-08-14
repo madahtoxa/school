@@ -1,6 +1,5 @@
 package ru.hogwarts.school.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
@@ -21,10 +20,8 @@ public class StudentController {
         return studentService.getAll();
     }
 
-
-
     @GetMapping("/{id}")
-    public Student getById(@PathVariable("id") Long id) {
+    public Student getById(@RequestParam("id") Long id) {
         return studentService.getById(id);
     }
 
@@ -33,17 +30,17 @@ public class StudentController {
         return studentService.getByAge(age);
     }
 
-    @PostMapping
+    @PostMapping("/filtered")
     public Student create(@RequestBody Student student) {
         return studentService.create(student);
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public Student update (@PathVariable("id") Long id, @RequestBody Student student) {
         return studentService.update(id, student);
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable("id") long id) {
+    @DeleteMapping("/{id}")
+    public void delete(@RequestParam("id") long id) {
         studentService.delete(id);
     }
 }

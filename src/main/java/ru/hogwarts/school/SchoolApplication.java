@@ -8,9 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition
 public class SchoolApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiSwaggerPostmanApplication.class, args);
-		SpringApplication.run(ApiSwaggerPostmanApplication.class, args);
-	}
+    public static void main(String[] args) {
+
+        SpringApplication.run(SchoolApplication.class, args);
+
+    }
 
 }
