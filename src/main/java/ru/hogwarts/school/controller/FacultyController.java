@@ -9,42 +9,37 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
-    private final FacultyService facultyService;
+    private final FacultyService service;
 
-    public FacultyController(FacultyService facultyService) {
-        this.facultyService = facultyService;
+    public FacultyController(FacultyService service) {
+        this.service = service;
     }
-
-    @GetMapping
-    public Collection<Faculty> getAll() {
-        return facultyService.getAll();
-    }
-
-
-
     @GetMapping("/{id}")
     public Faculty getById(@PathVariable("id") Long id) {
-        return facultyService.getById(id);
-    }
-
-
-    @GetMapping("/filtered")
-    public Collection<Faculty> getColor(@RequestParam("color") String color) {
-        return facultyService.getByColor(color);
+        return service.getById(id);
     }
 
     @PostMapping
     public Faculty create(@RequestBody Faculty faculty) {
-        return facultyService.create(faculty);
+        return service.create(faculty);
+    }
+
+    @GetMapping
+    public Collection<Faculty> getAll() {
+        return service.getAll();
+    }
+    @GetMapping("/filtered")
+    public Collection<Faculty> getColor(@RequestParam("color") String color) {
+        return service.getByColor(color);
     }
     @PutMapping
     public Faculty update (@PathVariable("id") Long id, @RequestBody Faculty faculty) {
-        return facultyService.update(id, faculty);
+        return service.update(id, faculty);
     }
 
     @DeleteMapping
-    public void delete(@PathVariable("id") long id) {
-        facultyService.delete(id);
+    public void delete(@PathVariable("id") Long id) {
+        service.delete(id);
     }
 
 
