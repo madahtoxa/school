@@ -39,7 +39,7 @@ public class FacultyController {
         return facultyService.create(faculty);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public void remove(@PathVariable("id") Long id) {
         facultyService.remove(id);
     }
