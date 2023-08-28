@@ -9,38 +9,43 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
-    private final FacultyService service;
+    private final FacultyService facultyService;
 
-    public FacultyController(FacultyService service) {
-        this.service = service;
-    }
-    @GetMapping("/{id}")
-    public Faculty getById(@PathVariable("id") Long id) {
-        return service.getById(id);
-    }
-
-    @PostMapping
-    public Faculty create(@RequestBody Faculty faculty) {
-        return service.create(faculty);
+    public FacultyController(FacultyService facultyService) {
+        this.facultyService = facultyService;
     }
 
     @GetMapping
     public Collection<Faculty> getAll() {
-        return service.getAll();
+        return facultyService.getAll();
     }
-    @GetMapping("/filtered")
-    public Collection<Faculty> getColor(@RequestParam("color") String color) {
-        return service.getByColor(color);
-    }
-    @PutMapping
-    public Faculty update (@PathVariable("id") Long id, @RequestBody Faculty faculty) {
-        return service.update(id, faculty);
+    @GetMapping("/{id}")
+    public Faculty getById(@PathVariable("id") Long id) {
+        return facultyService.getById(id);
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable("id") Long id) {
-        service.delete(id);
+    @GetMapping("/filtred")
+    public Collection getByColor(@RequestParam("color") String color) {
+        return facultyService.getByColor(color);
     }
 
+    @GetMapping("/by-color-or-name")
+    public Collection<Faculty> getByColorOrName(@RequestParam String search) {
+        return facultyService.getByColorOrName(search, search);
+    }
 
+    @PostMapping
+    public Faculty create(@RequestBody Faculty faculty) {
+        return facultyService.create(faculty);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remove(@PathVariable("id") Long id) {
+        facultyService.remove(id);
+    }
+
+    @GetMapping("/by-student")
+    public Faculty getByStudent(@RequestParam Long studentId) {
+        return facultyService.getByStudent(studentId);
+    }
 }
